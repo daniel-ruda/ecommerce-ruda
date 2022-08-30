@@ -1,5 +1,7 @@
-import logo from "../../logo.svg";
+import logo from "../../../assets/images/logo.svg";
 import styled from "styled-components";
+import CartWidget from "../../shared/components/CartWidget/CartWidget";
+
 
 const NavBar = () => {
   const listMenues = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
@@ -15,8 +17,11 @@ const NavBar = () => {
           <a href="/#" key={index}>{el}</a>
         ))}
       </Menu>
-
-      <Button>Login</Button>
+        <RightMenu>
+          <CartWidget />
+          <Button>Login</Button>  
+        </RightMenu>
+      
     </Wrapper>
   );
 };
@@ -74,4 +79,11 @@ const Menu = styled.div`
 const LeftMenu = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const RightMenu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 `;
