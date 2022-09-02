@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <ItemListContainer greeting="Welcome to RUDA MARKET..."/>
+      <ItemListContainer greeting="Welcome to RUDA MARKET... "/>
     </div>
   );
 }
