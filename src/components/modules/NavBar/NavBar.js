@@ -74,6 +74,10 @@ const Menu = styled.div`
     outline: none;
     border-radius: 40px;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const LeftMenu = styled.div`

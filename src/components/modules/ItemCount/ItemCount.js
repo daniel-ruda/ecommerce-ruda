@@ -47,6 +47,7 @@ const Wrapper = styled.div`
   border-radius: 3px;
   border: 1px solid #00c244;
   background-color: #00c244;
+  margin: auto;
 `;
 
 const WrapperButton = styled.div`
