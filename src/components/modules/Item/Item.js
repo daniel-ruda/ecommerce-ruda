@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ShoppingCart from "../../../assets/images/shopping-cart.svg";
-import ConfirmIcon from "../../../assets/images/confirm_icon.svg";
-import CancelIcon from "../../../assets/images/cancel__icon.svg";
+import Shipping from "../../shared/components/Shipping/Shipping";
 
 const Item = ({ id, imageUrl, description, title, price, promotion, isShipAvailable }) => {
-  
   return (
     <Wrapper>
       <WrapperImage>
@@ -14,9 +12,7 @@ const Item = ({ id, imageUrl, description, title, price, promotion, isShipAvaila
       <WrapperTitle>{title}</WrapperTitle>
       <WrapperPrice>${price}</WrapperPrice>
       <WrapperDetail>{promotion}</WrapperDetail>
-      <WrapperShipping>
-        {isShipAvailable ? <img src={ConfirmIcon} alt="" /> : <img src={CancelIcon} alt="" />} Shipping Available
-      </WrapperShipping>
+      <Shipping isShipAvailable={isShipAvailable} />
       <WrapperAddCart>
         <img src={ShoppingCart} alt="shopping cart" />
         ADD TO CART
@@ -73,19 +69,6 @@ const WrapperDetail = styled.div`
   margin-bottom: 0px;
   color: #ab2635;
 `;
-const WrapperShipping = styled.div`
-  font-family: "Archivo", sans-serif;
-  font-size: 0.7rem;
-  border-top: 1px solid #ededed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 10px;
-  img {
-    width: 12px;
-    margin-right: 2px;
-  }
-`;
 
 const WrapperAddCart = styled.div`
   font-size: 1rem;
@@ -98,5 +81,4 @@ const WrapperAddCart = styled.div`
     width: 20px;
     margin-right: 2px;
   }
-
 `;

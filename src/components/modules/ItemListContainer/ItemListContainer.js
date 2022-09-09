@@ -1,8 +1,8 @@
-import ItemCount from "../ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
 import { useState, useEffect } from "react";
 import Spinner from "../../shared/components/Spinner/Spinner";
 import productsData from "../../tests/data/products";
+import ItemDetailContainer from "./../ItemDetailContainer/ItemDetailContainer";
 
 const ItemListContainer = ({ greeting }) => {
   const [loading, setLoading] = useState(true);
@@ -38,8 +38,9 @@ const ItemListContainer = ({ greeting }) => {
       ) : (
         <div style={{ width: "100%" }}>
           <ItemList products={products} />
-          <p>{greeting}</p>
-          <ItemCount stock={5} />
+          {/* <p>{greeting}</p> */}
+          <p>Product Detail</p>
+          <ItemDetailContainer />
         </div>
       )}
     </div>

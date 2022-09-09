@@ -29,7 +29,7 @@ const ItemCount = ({ stock = 0, initial = 0 }) => {
           </>
         ) : (
           <WrapperAddButton>
-          <CustomButton text="AGREGAR" onClick={onAdd} />
+            <CustomButton text="AGREGAR" onClick={onAdd} />
           </WrapperAddButton>
         )}
       </Wrapper>
@@ -39,11 +39,13 @@ const ItemCount = ({ stock = 0, initial = 0 }) => {
 
 export default ItemCount;
 
-const Warning = styled.span``;
+const Warning = styled.span`
+  color: black;
+`;
 
 const Wrapper = styled.div`
+  width: 100%;
   display: flex;
-  width: 20%;
   border-radius: 3px;
   border: 1px solid #00c244;
   background-color: #00c244;
