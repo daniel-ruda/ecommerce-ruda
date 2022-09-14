@@ -1,16 +1,17 @@
 import React from "react";
 import Item from "../Item/Item";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ItemList = ({ products }) => {
   return (
-
     <Wrapper>
-        {products.map((product) => (
-          <Item key={product.id} {...product} />
-        ))}  
+      {products.map((product) => (
+        <Link key={product.id} to={`/item/${product.id}`} style={{ textDecoration: "none" }}>
+          <Item {...product} />
+        </Link>
+      ))}
     </Wrapper>
-
   );
 };
 
@@ -22,4 +23,3 @@ const Wrapper = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
 `;
-

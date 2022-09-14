@@ -37,3 +37,11 @@
     transform: rotate(360deg);
   }
 }
+
+.activeClassName{
+  background-color: #494f51;
+  color: #fff !important;
+  border-color: #ed1c24;
+  outline: none;
+  border-radius: 40px;
+}

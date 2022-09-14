@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import ShoppingCart from "../../../assets/images/shopping-cart.svg";
+import ShoppingCart from "../../../assets/images/shoppingCart.svg";
 import Shipping from "../../shared/components/Shipping/Shipping";
 
-const Item = ({ id, imageUrl, description, title, price, promotion, isShipAvailable }) => {
+const Item = ({ imageUrl, title, price, promotion, isShipAvailable }) => {
   return (
     <Wrapper>
       <WrapperImage>
@@ -26,6 +26,7 @@ export default Item;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: white;
   color: black;
 
@@ -46,8 +47,9 @@ const WrapperImage = styled.div`
 `;
 
 const WrapperTitle = styled.div`
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 1rem;
+  min-height: 3rem;
 `;
 
 const WrapperPrice = styled.div`

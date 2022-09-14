@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import ConfirmIcon from "../../../../assets/images/confirm_icon.svg";
-import CancelIcon from "../../../../assets/images/cancel__icon.svg";
+import ConfirmIcon from "../../../../assets/images/confirmIcon.svg";
+import CancelIcon from "../../../../assets/images/cancelIcon.svg";
 
 const Shipping = ({ isShipAvailable }) => {
   return (

@@ -1,27 +1,51 @@
 import logo from "../../../assets/images/logo.svg";
 import styled from "styled-components";
 import CartWidget from "../../shared/components/CartWidget/CartWidget";
-
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
-  const listMenues = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
+  const listMenues = [
+    {
+      category: 1,
+      description: "Suplements",
+    },
+    {
+      category: 2,
+      description: "Equipments",
+    },
+    {
+      category: 3,
+      description: "Bikes",
+    },
+  ];
   return (
     <Wrapper>
       <LeftMenu>
-        <img src={logo} className="App-logo" alt="logo" />
-        <Button>RUDA MARKET</Button>
+        <NavLink to={"/"} >
+          <img src={logo} className="App-logo" alt="logo" />
+        </NavLink>
+        <ButtonHome>
+          <NavLink to={"/"} className={({ isActive }) => (isActive ? "activeClassName" : undefined)}>
+            Home
+          </NavLink>
+        </ButtonHome>
       </LeftMenu>
 
       <Menu>
         {listMenues.map((el, index) => (
-          <a href="/#" key={index}>{el}</a>
+          <NavLink
+            to={`/category/${el.category}`}
+            key={index}
+            className={({ isActive }) => (isActive ? "activeClassName" : undefined)}
+          >
+            {el.description}
+          </NavLink>
         ))}
       </Menu>
-        <RightMenu>
-          <CartWidget />
-          <Button>Login</Button>  
-        </RightMenu>
-      
+      <RightMenu>
+        <CartWidget />
+        <Button>Login</Button>
+      </RightMenu>
     </Wrapper>
   );
 };
@@ -41,9 +65,33 @@ const Wrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
+  border-bottom: 1px solid lightgrey;
 `;
 
-const Button = styled.a`
+const ButtonHome = styled.div`
+  a {
+    color: black;
+    padding: 9px 15px;
+    text-decoration: none;
+    margin-right: 30px;
+    border: 1px solid #dbdcdd;
+    outline: none;
+    border-radius: 40px;
+  }
+  a:hover {
+    background-color: #494f51;
+    color: #fff;
+
+    outline: none;
+    border-radius: 40px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Button = styled.div`
   border: 1px solid #dbdcdd;
   margin-right: 10px;
   background-color: #494f51;
@@ -83,6 +131,9 @@ const Menu = styled.div`
 const LeftMenu = styled.div`
   display: flex;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 `;
 
 const RightMenu = styled.div`

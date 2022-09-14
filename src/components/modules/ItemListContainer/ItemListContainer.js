@@ -2,14 +2,24 @@ import ItemList from "../ItemList/ItemList";
 import { useState, useEffect } from "react";
 import Spinner from "../../shared/components/Spinner/Spinner";
 import productsData from "../../tests/data/products";
-import ItemDetailContainer from "./../ItemDetailContainer/ItemDetailContainer";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
+  const { categoryId } = useParams();
+  const getProducts = async () => {
+    return await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // eslint-disable-next-line eqeqeq
+        resolve(categoryId ? productsData.filter((el) => el.category == categoryId) : productsData);
+      }, 2000);
+    });
+  };
 
   useEffect(() => {
+    setLoading(true);
     getProducts()
       .then((response) => {
         setProducts(response);
@@ -20,15 +30,9 @@ const ItemListContainer = ({ greeting }) => {
         setLoading(false);
         setError(true);
       });
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryId]);
 
-  const getProducts = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(productsData);
-      }, 2000);
-    });
-  };
   return (
     <div className="App-main">
       {loading ? (
@@ -39,8 +43,6 @@ const ItemListContainer = ({ greeting }) => {
         <div style={{ width: "100%" }}>
           <ItemList products={products} />
           {/* <p>{greeting}</p> */}
-          <p>Product Detail</p>
-          <ItemDetailContainer />
         </div>
       )}
     </div>
