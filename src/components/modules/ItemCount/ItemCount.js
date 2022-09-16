@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CustomButton from "../../shared/components/Buttons/CustomButton";
 
-const ItemCount = ({ stock = 0, initial = 0 }) => {
+const ItemCount = ({ stock = 0, counter, setCounter }) => {
   const [disable, setDisable] = useState(false);
-  const [counter, setCounter] = useState(initial);
 
   const onAdd = () => (stock > counter ? setCounter(counter + 1) : setDisable(true));
 

@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import Shipping from "../../shared/components/Shipping/Shipping";
 import ItemCount from "../ItemCount/ItemCount";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import ShoppingCart from "../../../assets/images/shoppingCart.svg";
 
 const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion, isShipAvailable, details }) => {
+  const [counter, setCounter] = useState(0);
+
   return (
     <Wrapper>
       <MainInformation>
@@ -14,8 +19,12 @@ const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion,
           <PriceContainer>${price}</PriceContainer>
           <Shipping isShipAvailable={isShipAvailable} />
           <WrapperCount>
-            <ItemCount stock={stock} />
+            <ItemCount stock={stock} counter={counter} setCounter={setCounter} />
           </WrapperCount>
+          <Link to={"/cart"} className={counter > 0 ? "cartButton" : "cartButtonDisabled"}>
+            <img src={ShoppingCart} alt="shopping cart" className="cartButtonImg" />
+            FINALIZAR COMPRA
+          </Link>
         </Information>
       </MainInformation>
       <ProductInformationWrapper>
@@ -75,7 +84,7 @@ const Information = styled.div`
 `;
 
 const WrapperCount = styled.div`
-  width: 40%;
+  width: 45%;
   margin: auto;
 `;
 const PriceContainer = styled.div`

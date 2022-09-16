@@ -18,6 +18,11 @@ const ApplicationRoutes = {
       component: <ItemListContainer />,
       key: "category",
     },
+    {
+      path: "cart",
+      component: <div style={{ marginTop: "6rem" }}>Componente Cart a desarrollar.</div>,
+      key: "cart",
+    },
   ],
 };
 

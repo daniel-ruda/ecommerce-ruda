@@ -38,10 +38,49 @@
   }
 }
 
-.activeClassName{
+.activeClassName {
   background-color: #494f51;
   color: #fff !important;
   border-color: #ed1c24;
   outline: none;
   border-radius: 40px;
+}
+
+.cartButton {
+  width: 40%;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #368f1f;
+  margin-top: 15px !important;
+  margin: auto;
+  background-color: #368f1f;
+  color: white;
+  font-weight: bolder;
+  padding: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cartButtonDisabled {
+  width: 40%;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid grey;
+  margin-top: 15px !important;
+  margin: auto;
+  background-color: grey;
+  color: white;
+  font-weight: bolder;
+  padding: 0.5rem;
+  text-decoration: none;
+  pointer-events: none;
+  cursor: initial;
+}
+.cartButtonImg {
+  width: 20px;
+  margin-right: 2px;
 }

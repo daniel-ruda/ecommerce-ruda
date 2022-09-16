@@ -12,8 +12,8 @@ const ItemDetailContainer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const getItem = () => {
-      return new Promise((resolve, reject) => {
+    const getItem = async () => {
+      return await new Promise((resolve, reject) => {
         setTimeout(() => {
           // eslint-disable-next-line eqeqeq
           resolve(products.find((el) => el.id == id));
