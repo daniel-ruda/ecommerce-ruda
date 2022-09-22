@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Shipping from "../../shared/components/Shipping/Shipping";
 import ItemCount from "../ItemCount/ItemCount";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
 import ShoppingCart from "../../../assets/images/shoppingCart.svg";
+import CartContext from "./../../../context/CartContext";
 
 const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion, isShipAvailable, details }) => {
   const [counter, setCounter] = useState(0);
+  const { addItem } = useContext(CartContext);
 
   return (
     <Wrapper>
@@ -21,10 +22,13 @@ const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion,
           <WrapperCount>
             <ItemCount stock={stock} counter={counter} setCounter={setCounter} />
           </WrapperCount>
-          <Link to={"/cart"} className={counter > 0 ? "cartButton" : "cartButtonDisabled"}>
+          <button
+            className={counter > 0 ? "cartButton" : "cartButtonDisabled"}
+            onClick={() => addItem({ id, stock, imageUrl, title, price, description }, counter)}
+          >
             <img src={ShoppingCart} alt="shopping cart" className="cartButtonImg" />
-            FINALIZAR COMPRA
-          </Link>
+            Agregar al Carrito
+          </button>
         </Information>
       </MainInformation>
       <ProductInformationWrapper>

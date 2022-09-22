@@ -2,18 +2,19 @@ import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 
 import NavBar from "./components/modules/NavBar/NavBar";
+import { CartProvider } from "./context/CartProvider";
 import AppRoute from "./Routing/AppRoute";
 
 function App() {
   return (
-    
-      <div className="App">
+    <div className="App">
+      <CartProvider>
         <BrowserRouter>
-        <NavBar />
-        <AppRoute />
+          <NavBar />
+          <AppRoute />
         </BrowserRouter>
-      </div>
-    
+      </CartProvider>
+    </div>
   );
 }
 
