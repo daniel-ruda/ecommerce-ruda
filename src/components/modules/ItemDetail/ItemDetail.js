@@ -6,8 +6,20 @@ import ShoppingCart from "../../../assets/images/shoppingCart.svg";
 import CartContext from "./../../../context/CartContext";
 
 const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion, isShipAvailable, details }) => {
-  const [counter, setCounter] = useState(0);
-  const { addItem } = useContext(CartContext);
+  const { addItem, products } = useContext(CartContext);
+  const currentStock = products.find((el) => el.id === id) != null ? stock - products.find((el) => el.id === id).quantity : stock;
+  const [counter, setCounter] = useState(currentStock === 0 ? currentStock : 1);
+
+  const addToCart = () => {
+    if (currentStock >= counter) {
+      addItem({ id, stock, imageUrl, title, price, description }, counter);
+      if (currentStock === counter) {
+        setCounter(0);
+      } else {
+        setCounter(1);
+      }
+    }
+  };
 
   return (
     <Wrapper>
@@ -20,12 +32,9 @@ const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion,
           <PriceContainer>${price}</PriceContainer>
           <Shipping isShipAvailable={isShipAvailable} />
           <WrapperCount>
-            <ItemCount stock={stock} counter={counter} setCounter={setCounter} />
+            <ItemCount stock={currentStock} counter={counter} setCounter={setCounter} isInCart={products.find((el) => el.id === id)}/>
           </WrapperCount>
-          <button
-            className={counter > 0 ? "cartButton" : "cartButtonDisabled"}
-            onClick={() => addItem({ id, stock, imageUrl, title, price, description }, counter)}
-          >
+          <button className={counter > 0 ? "cartButton" : "cartButtonDisabled"} onClick={addToCart}>
             <img src={ShoppingCart} alt="shopping cart" className="cartButtonImg" />
             Agregar al Carrito
           </button>

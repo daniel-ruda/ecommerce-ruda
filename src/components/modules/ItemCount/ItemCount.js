@@ -1,34 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import CustomButton from "../../shared/components/Buttons/CustomButton";
 
-const ItemCount = ({ stock = 0, counter, setCounter }) => {
-  const [disable, setDisable] = useState(false);
-
-  const onAdd = () => (stock > counter ? setCounter(counter + 1) : setDisable(true));
-
-  const onSub = () => {
-    setCounter(counter - 1);
-    stock >= counter && setDisable(false);
-  };
+const ItemCount = ({ stock = 0, counter, setCounter, isInCart }) => {
+  const onAdd = () => stock > counter && setCounter(counter + 1);
+  const onSub = () => setCounter(counter - 1);
 
   return (
     <>
-      <Warning>{!disable && stock > 0 ? `Stock inicial: ${stock}` : "Sin stock"}</Warning>
+      <Warning> Cantidad en Carrito: {isInCart != null ? <b>{isInCart.quantity}</b> : <b>0 </b>}</Warning>
+      {stock > 0 && (
+        <Warning>
+          / Stock Disponible: <b>{stock}</b>
+        </Warning>
+      )}
       <Wrapper>
-        {counter ? (
+        {stock > 0 ? (
           <>
             <WrapperButton>
-              <CustomButton onClick={onSub} text="-" />
+              <CustomButton hide={counter <= 0} onClick={onSub} text="-" />
             </WrapperButton>
             <Input type="text" value={counter} disabled />
             <WrapperButton>
-              <CustomButton hide={disable} onClick={onAdd} text="+" />
+              <CustomButton hide={stock <= counter} onClick={onAdd} text="+" />
             </WrapperButton>
           </>
         ) : (
           <WrapperAddButton>
-            <CustomButton text="AGREGAR" onClick={onAdd} />
+            <CustomButton text="SIN STOCK" />
           </WrapperAddButton>
         )}
       </Wrapper>

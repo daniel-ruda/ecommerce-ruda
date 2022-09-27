@@ -8,7 +8,9 @@ export const CartProvider = ({ children }) => {
     if (!isInCart(item.id)) {
       setProducts([...products, { ...item, quantity }]);
     } else {
-      alert("Ya existe el producto en el carrito!.");
+      setProducts(
+        products.map((product) => (product.id === item.id ? { ...product, quantity: product.quantity + quantity } : product))
+      );
     }
   };
 
