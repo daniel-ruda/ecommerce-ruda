@@ -1,9 +1,13 @@
 import logo from "../../../assets/images/logo.svg";
 import styled from "styled-components";
 import CartWidget from "../../shared/components/CartWidget/CartWidget";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "../../../context/CartContext";
 
 const NavBar = () => {
+  const { products } = useContext(CartContext);
+  const getTotalAmount = (acc, nextValue) => acc + nextValue.quantity;
   const listMenues = [
     {
       category: 1,
@@ -21,7 +25,7 @@ const NavBar = () => {
   return (
     <Wrapper>
       <LeftMenu>
-        <NavLink to={"/"} >
+        <NavLink to={"/"}>
           <img src={logo} className="App-logo" alt="logo" />
         </NavLink>
         <ButtonHome>
@@ -43,7 +47,13 @@ const NavBar = () => {
         ))}
       </Menu>
       <RightMenu>
-        <CartWidget />
+        
+          {products.length > 0 && (
+            <Link to="cart">
+              <CartWidget itemsInCart={products.reduce(getTotalAmount, 0)} />
+            </Link>
+          )}
+        
         <Button>Login</Button>
       </RightMenu>
     </Wrapper>
@@ -141,4 +151,8 @@ const RightMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+  a {
+    text-decoration: none;
+  }
 `;

@@ -25,4 +25,8 @@ const Button = styled.button`
   cursor: ${(props) => (props.hide ? "initial" : "pointer")};
   margin: auto;
   width: 100%;
+
+  &:hover{
+    background-color: #09973b;
+  }
 `;

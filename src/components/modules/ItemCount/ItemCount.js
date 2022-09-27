@@ -8,10 +8,10 @@ const ItemCount = ({ stock = 0, counter, setCounter, isInCart }) => {
 
   return (
     <>
-      <Warning> Cantidad en Carrito: {isInCart != null ? <b>{isInCart.quantity}</b> : <b>0 </b>}</Warning>
+      <Warning> Items in Cart: {isInCart != null ? <b>{isInCart.quantity}</b> : <b>0 </b>}</Warning>
       {stock > 0 && (
         <Warning>
-          / Stock Disponible: <b>{stock}</b>
+          / Stock Available: <b>{stock}</b>
         </Warning>
       )}
       <Wrapper>
@@ -27,7 +27,7 @@ const ItemCount = ({ stock = 0, counter, setCounter, isInCart }) => {
           </>
         ) : (
           <WrapperAddButton>
-            <CustomButton text="SIN STOCK" />
+            <CustomButton text="NO STOCK" />
           </WrapperAddButton>
         )}
       </Wrapper>

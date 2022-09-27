@@ -1,18 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import ShoppingCart from "../../../../assets/images/shoppingCart.svg";
 import styled from "styled-components";
-import CartContext from "../../../../context/CartContext";
 
-const CartWidget = () => {
-  const { products } = useContext(CartContext);
-  const getTotalAmount = (acc, nextValue) => acc + nextValue.quantity;
-
+const CartWidget = ({ itemsInCart }) => {
   return (
     <Wrapper>
       <CartWrapper>
         <Cart src={ShoppingCart} alt="logo carrito" />
         <div>
-          <span>{products.length > 0 ? products.reduce(getTotalAmount, 0) : 0}</span>
+          <span>{itemsInCart}</span>
         </div>
       </CartWrapper>
     </Wrapper>

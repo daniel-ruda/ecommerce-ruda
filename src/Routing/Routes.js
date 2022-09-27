@@ -1,5 +1,6 @@
 import ItemListContainer from "./../components/modules/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./../components/modules/ItemDetailContainer/ItemDetailContainer";
+import Cart from "../components/modules/Cart/Cart";
 
 const ApplicationRoutes = {
   Routes: [
@@ -20,7 +21,7 @@ const ApplicationRoutes = {
     },
     {
       path: "cart",
-      component: <div style={{ marginTop: "6rem" }}>Componente Cart a desarrollar.</div>,
+      component: <Cart />,
       key: "cart",
     },
   ],

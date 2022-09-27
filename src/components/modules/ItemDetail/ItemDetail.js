@@ -4,15 +4,18 @@ import ItemCount from "../ItemCount/ItemCount";
 import { useState, useContext } from "react";
 import ShoppingCart from "../../../assets/images/shoppingCart.svg";
 import CartContext from "./../../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion, isShipAvailable, details }) => {
-  const { addItem, products } = useContext(CartContext);
+  const { addItem, products, isInCart } = useContext(CartContext);
   const currentStock = products.find((el) => el.id === id) != null ? stock - products.find((el) => el.id === id).quantity : stock;
   const [counter, setCounter] = useState(currentStock === 0 ? currentStock : 1);
+  
 
   const addToCart = () => {
     if (currentStock >= counter) {
       addItem({ id, stock, imageUrl, title, price, description }, counter);
+      
       if (currentStock === counter) {
         setCounter(0);
       } else {
@@ -32,12 +35,24 @@ const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion,
           <PriceContainer>${price}</PriceContainer>
           <Shipping isShipAvailable={isShipAvailable} />
           <WrapperCount>
-            <ItemCount stock={currentStock} counter={counter} setCounter={setCounter} isInCart={products.find((el) => el.id === id)}/>
+            <ItemCount
+              stock={currentStock}
+              counter={counter}
+              setCounter={setCounter}
+              isInCart={products.find((el) => el.id === id)}
+            />
           </WrapperCount>
-          <button className={counter > 0 ? "cartButton" : "cartButtonDisabled"} onClick={addToCart}>
-            <img src={ShoppingCart} alt="shopping cart" className="cartButtonImg" />
-            Agregar al Carrito
-          </button>
+          <WrapperButtons>
+            <button className={counter > 0 ? "cartButton" : "cartButtonDisabled"} onClick={addToCart}>
+              <img src={ShoppingCart} alt="shopping cart" className="cartButtonImg" />
+              ADD TO CART
+            </button>
+            {isInCart(id) && (
+              <EndButton>
+                <Link to="/cart">FINISH BUYING ({products.find((el) => el.id === id).quantity} items)</Link>
+              </EndButton>
+            )}
+          </WrapperButtons>
         </Information>
       </MainInformation>
       <ProductInformationWrapper>
@@ -140,4 +155,36 @@ const ProductInformation = styled.div`
     text-align: left;
     font-size: 1.2rem;
   }
+`;
+
+const EndButton = styled.div`
+  width: 40%;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px !important;
+  margin: auto;
+  background-color: #bb5811;
+  color: white;
+  font-weight: bolder;
+  padding: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover{
+    background-color: #974408;
+  }
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 100%;
+  }
+`;
+
+const WrapperButtons = styled.div`
+  display: flex;
 `;

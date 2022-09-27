@@ -62,6 +62,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+.cartButton:hover{
+  background-color: #144907;
+}
 
 .cartButtonDisabled {
   width: 40%;
