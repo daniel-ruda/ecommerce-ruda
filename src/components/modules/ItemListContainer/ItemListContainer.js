@@ -1,35 +1,38 @@
 import ItemList from "../ItemList/ItemList";
 import { useState, useEffect } from "react";
 import Spinner from "../../shared/components/Spinner/Spinner";
-import productsData from "../../tests/data/products";
 import { useParams } from "react-router-dom";
+import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = ({ greeting }) => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   const { categoryId } = useParams();
-  const getProducts = async () => {
-    return await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // eslint-disable-next-line eqeqeq
-        resolve(categoryId ? productsData.filter((el) => el.category == categoryId) : productsData);
-      }, 2000);
-    });
-  };
 
   useEffect(() => {
-    setLoading(true);
-    getProducts()
-      .then((response) => {
-        setProducts(response);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-        setError(true);
-      });
+    const getProducts = () => {
+      setLoading(true);
+      const db = getFirestore();
+      const queryCollection = collection(db, "items");
+
+      const queryByCategory = categoryId && query(queryCollection, where("categoryId", "==", categoryId));
+      getDocs(queryByCategory || queryCollection)
+        .then((response) => {
+          const data = response.docs.map((product) => {
+            return { ...product.data(), id: product.id };
+          });
+          setProducts(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+          setError(true);
+        });
+    };
+
+    getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
 

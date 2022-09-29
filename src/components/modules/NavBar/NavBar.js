@@ -10,15 +10,15 @@ const NavBar = () => {
   const getTotalAmount = (acc, nextValue) => acc + nextValue.quantity;
   const listMenues = [
     {
-      category: 1,
+      category: "1",
       description: "Suplements",
     },
     {
-      category: 2,
+      category: "2",
       description: "Equipments",
     },
     {
-      category: 3,
+      category: "3",
       description: "Bikes",
     },
   ];
@@ -47,13 +47,12 @@ const NavBar = () => {
         ))}
       </Menu>
       <RightMenu>
-        
-          {products.length > 0 && (
-            <Link to="cart">
-              <CartWidget itemsInCart={products.reduce(getTotalAmount, 0)} />
-            </Link>
-          )}
-        
+        {products.length > 0 && (
+          <Link to="cart">
+            <CartWidget itemsInCart={products.reduce(getTotalAmount, 0)} />
+          </Link>
+        )}
+
         <Button>Login</Button>
       </RightMenu>
     </Wrapper>
