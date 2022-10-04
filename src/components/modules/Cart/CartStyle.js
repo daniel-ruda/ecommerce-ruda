@@ -153,3 +153,21 @@ export const EmptyCart = styled.div`
   background-color: white;
   width: 100%;
 `;
+
+export const CustomForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  
+  padding: 1rem 2rem;
+
+  input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem;
+    font-family: sans-serif;
+    outline: none;
+    font-size: 1rem;
+  }
+`;
