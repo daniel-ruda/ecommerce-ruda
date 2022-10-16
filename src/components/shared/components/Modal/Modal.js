@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = ({ open, onClose, orderNumber }) => {
+const Modal = ({ open, onClose, title,  children }) => {
   if (!open) return null;
 
   return (
     <Wrapper>
-      Modal
       <WrapperModal>
-        <ModalTitle>!Important!</ModalTitle>
+        
         <CloseButton onClick={onClose}> X </CloseButton>
-        <p>
-          Your Order Number is: <strong> {orderNumber}</strong>
-        </p>
+        <ModalTitle>{title}</ModalTitle>
+        {children}
       </WrapperModal>
+        
     </Wrapper>
   );
 };
@@ -22,8 +21,12 @@ export default Modal;
 
 const Wrapper = styled.div`
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 100;
+  background: rgba(0,0,0,.5);
 `;
 const WrapperModal = styled.div`
   max-width: 600px;

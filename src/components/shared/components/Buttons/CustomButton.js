@@ -27,6 +27,6 @@ const Button = styled.button`
   width: 100%;
 
   &:hover{
-    background-color: #09973b;
+    background-color: ${(props) => (props.hide ? "grey" : "#09973b")};
   }
 `;

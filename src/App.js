@@ -3,16 +3,19 @@ import "./App.css";
 
 import NavBar from "./components/modules/NavBar/NavBar";
 import { CartProvider } from "./context/CartProvider";
+import UserProvider from "./context/UserProvider";
 import AppRoute from "./Routing/AppRoute";
 
 function App() {
   return (
     <div className="App">
       <CartProvider>
-        <BrowserRouter>
-          <NavBar />
-          <AppRoute />
-        </BrowserRouter>
+        <UserProvider>
+          <BrowserRouter>
+            <NavBar />
+            <AppRoute />
+          </BrowserRouter>
+        </UserProvider>
       </CartProvider>
     </div>
   );

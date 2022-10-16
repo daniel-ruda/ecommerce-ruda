@@ -40,21 +40,18 @@ export const ProductsContainer = styled.div`
 
 export const Wrapper = styled.div`
   min-height: 90vh;
-  display: flex;
   margin-top: 6rem;
   background-color: #ededed;
   padding: 2rem;
   position: relative;
+  overflow-y: hidden;
 `;
 
 export const CartRigth = styled.div`
-  width: 65%;
+  width: 100%;
   margin-right: 1rem;
 `;
 
-export const CartLeft = styled.div`
-  width: 35%;
-`;
 
 export const ProductContainer = styled.div`
   width: 100%;
@@ -69,7 +66,7 @@ export const ProductDetail = styled.div`
 `;
 
 export const ProductDelete = styled.div`
-  width: 40%;
+  width: 15%;
   margin: auto;
   display: flex;
   align-items: center;
@@ -155,3 +152,18 @@ export const EmptyCart = styled.div`
   width: 100%;
 `;
 
+export const OrderBuyer = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    `
+
+export const ItemsDetailContainer = styled.div`
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  border-left: 1px solid #c8c8c8;
+    `

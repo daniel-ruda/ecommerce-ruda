@@ -24,7 +24,7 @@ const CartWrapper = styled.div`
   display: inline-block;
   top: 5%;
   bottom: 0;
-  left: -170px;
+  left: -270px;
   right: 0;
   position: absolute;
   opacity: 1;
