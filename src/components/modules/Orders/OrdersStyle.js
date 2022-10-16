@@ -45,6 +45,10 @@ export const Wrapper = styled.div`
   padding: 2rem;
   position: relative;
   overflow-y: hidden;
+  @media (max-width: 768px) {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
 `;
 
 export const CartRigth = styled.div`
@@ -52,12 +56,15 @@ export const CartRigth = styled.div`
   margin-right: 1rem;
 `;
 
-
 export const ProductContainer = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 0.8rem;
   background-color: white;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ProductDetail = styled.div`
@@ -72,6 +79,9 @@ export const ProductDelete = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+
+  height: 600%;
+
   span,
   img {
     cursor: pointer;
@@ -85,6 +95,16 @@ export const ProductDelete = styled.div`
     height: 600%;
     border-left: 1px solid #d9dae1;
     transform: translateY(-50%);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    border-top: 1px solid #d9dae1;
+    background-color: green;
+    &:before {
+      content: "";
+      height: 0;
+    }
   }
   &:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
@@ -106,6 +126,9 @@ export const ProductDescription = styled.div`
   margin: auto;
   position: relative;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   input {
     width: 10%;
     text-align: center;
@@ -116,8 +139,6 @@ export const ProductDescription = styled.div`
     color: black;
   }
 `;
-
-export const HeaderPrice = styled.div``;
 
 export const ItemPrice = styled.div`
   display: flex;
@@ -158,12 +179,22 @@ export const OrderBuyer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-    `
+
+  @media (max-width: 768px) {
+    width: 90%;
+    p {
+      margin: 0px;
+    }
+  }
+`;
 
 export const ItemsDetailContainer = styled.div`
   width: 55%;
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   border-left: 1px solid #c8c8c8;
-    `
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;

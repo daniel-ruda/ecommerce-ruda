@@ -43,6 +43,10 @@ const WrapperImage = styled.div`
   img {
     padding-top: 1rem;
     width: 60%;
+
+    @media (max-width: 768px) {
+      width: 40%;
+    }
   }
 `;
 

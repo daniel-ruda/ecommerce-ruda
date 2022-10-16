@@ -45,15 +45,27 @@ export const Wrapper = styled.div`
   background-color: #ededed;
   padding: 2rem;
   position: relative;
+
+  @media (max-width: 768px) {
+   flex-direction: column;
+   min-height: 150vh;
+  }
 `;
 
 export const CartRigth = styled.div`
   width: 65%;
   margin-right: 1rem;
+
+  @media (max-width: 768px) {
+   width: 100%;
+  }
 `;
 
 export const CartLeft = styled.div`
   width: 35%;
+  @media (max-width: 768px) {
+   width: 100%;
+  }
 `;
 
 export const ProductContainer = styled.div`
@@ -61,11 +73,17 @@ export const ProductContainer = styled.div`
   display: flex;
   margin-bottom: 0.8rem;
   background-color: white;
+  @media (max-width: 768px) {
+   flex-direction: column;
+  }
 `;
 
 export const ProductDetail = styled.div`
   width: 60%;
   display: flex;
+  @media (max-width: 768px) {
+   width: 100%;
+  }
 `;
 
 export const ProductDelete = styled.div`
@@ -75,6 +93,10 @@ export const ProductDelete = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media (max-width: 768px) {
+   width: 100%;
+   border:1px solid grey; 
+  }
   span,
   img {
     cursor: pointer;

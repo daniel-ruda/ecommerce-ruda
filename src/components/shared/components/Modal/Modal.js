@@ -1,18 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = ({ open, onClose, title,  children }) => {
+const Modal = ({ open, onClose, title, children }) => {
   if (!open) return null;
 
   return (
     <Wrapper>
       <WrapperModal>
-        
         <CloseButton onClick={onClose}> X </CloseButton>
         <ModalTitle>{title}</ModalTitle>
         {children}
       </WrapperModal>
-        
     </Wrapper>
   );
 };
@@ -26,7 +24,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 100;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
 `;
 const WrapperModal = styled.div`
   max-width: 600px;
@@ -41,6 +39,10 @@ const WrapperModal = styled.div`
   padding: 2.5rem;
   border: 2px solid #00c244;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 
   p {
     font-size: 1.3rem;

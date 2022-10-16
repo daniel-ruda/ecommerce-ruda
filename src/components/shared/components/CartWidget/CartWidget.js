@@ -22,21 +22,21 @@ const Wrapper = styled.div`
 
 const CartWrapper = styled.div`
   display: inline-block;
-  top: 5%;
+  top: 1%;
   bottom: 0;
-  left: -270px;
+  left: -290px;
   right: 0;
   position: absolute;
   opacity: 1;
 
   div {
-    width: 13px;
-    height: 13px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     position: absolute;
-    left: 48%;
+    left: 48.5%;
     top: 15%;
-    font-size: calc((8 / 16) * 1.1rem);
+    font-size: calc((8 / 16) * 1.3rem);
     line-height: 8px;
     font-weight: 500;
     background: #00c244;
@@ -44,11 +44,20 @@ const CartWrapper = styled.div`
     justify-content: center;
     align-items: center;
     color: white;
+
+    @media (max-width: 768px) {
+      width: 1rem;
+    height: 1rem;
+  }
   }
 `;
 
 const Cart = styled.img`
-  height: 6.5vmin;
+  height: 7.5vmin;
   pointer-events: none;
   margin-right: 10px;
+
+  @media (max-width: 768px) {
+    height: 12.5vmin;
+  }
 `;

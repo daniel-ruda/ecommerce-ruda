@@ -39,4 +39,10 @@ export default ItemDetailContainer;
 const Wrapper = styled.div`
   background-color: #f9f9f9;
   padding: 6rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin-top: 4rem;
+    
+  }
 `;

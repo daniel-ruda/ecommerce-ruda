@@ -10,12 +10,11 @@ const ItemDetail = ({ id, stock, imageUrl, description, title, price, promotion,
   const { addItem, products, isInCart } = useContext(CartContext);
   const currentStock = products.find((el) => el.id === id) != null ? stock - products.find((el) => el.id === id).quantity : stock;
   const [counter, setCounter] = useState(currentStock === 0 ? currentStock : 1);
-  
 
   const addToCart = () => {
     if (currentStock >= counter) {
       addItem({ id, stock, imageUrl, title, price, description }, counter);
-      
+
       if (currentStock === counter) {
         setCounter(0);
       } else {
@@ -81,6 +80,10 @@ const Wrapper = styled.div`
 const MainInformation = styled.div`
   display: flex;
   margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -90,8 +93,14 @@ const ImageContainer = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
   height: 300px;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
   img {
     max-height: 385px;
+    @media (max-width: 768px) {
+      max-height: 285px;
+    }
   }
   &:hover {
     box-shadow: 0 2px 8px #c8c8c8;
@@ -99,7 +108,9 @@ const ImageContainer = styled.div`
 `;
 const Information = styled.div`
   width: 50%;
-
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   h1 {
     font-family: Archivo, sans-serif;
     font-size: 1.3rem;
@@ -114,6 +125,9 @@ const Information = styled.div`
 const WrapperCount = styled.div`
   width: 45%;
   margin: auto;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const PriceContainer = styled.div`
   font-family: "Archivo";
@@ -140,6 +154,10 @@ const ProductInformation = styled.div`
   color: #5e6260;
   padding: 2.3rem;
 
+  @media (max-width: 768px) {
+    padding: 1rem;
+    width: 100%;
+  }
   h2 {
     font-family: "Archivo", sans-serif;
     color: #191f1c;
@@ -171,8 +189,11 @@ const EndButton = styled.div`
   padding: 0.5rem;
   text-decoration: none;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 
-  &:hover{
+  &:hover {
     background-color: #974408;
   }
   a {
@@ -187,4 +208,7 @@ const EndButton = styled.div`
 
 const WrapperButtons = styled.div`
   display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;

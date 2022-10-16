@@ -22,4 +22,9 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+   padding: 1rem;
+  }
 `;

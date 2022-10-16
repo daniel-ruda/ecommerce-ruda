@@ -26,6 +26,9 @@ const Button = styled.button`
   margin: auto;
   width: 100%;
 
+  @media (max-width: 768px) {
+   font-size: 1rem;
+  }
   &:hover{
     background-color: ${(props) => (props.hide ? "grey" : "#09973b")};
   }

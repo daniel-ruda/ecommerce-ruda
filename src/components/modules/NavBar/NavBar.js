@@ -18,7 +18,7 @@ const NavBar = () => {
   });
   const { products } = useContext(CartContext);
   const { users, clearUser, addUser } = useContext(UserContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getTotalAmount = (acc, nextValue) => acc + nextValue.quantity;
   const listMenues = [
@@ -83,9 +83,12 @@ const NavBar = () => {
           </NavLink>
         ))}
       </Menu>
-      
+
       <RightMenu>
-      <Button login={true} onClick={()=>navigate("orders")}>  Orders </Button>
+        <Button login={true} onClick={() => navigate("orders")}>
+          {" "}
+          Orders{" "}
+        </Button>
         {products.length > 0 && (
           <Link to="cart">
             <CartWidget itemsInCart={products.reduce(getTotalAmount, 0)} />
@@ -124,6 +127,9 @@ const Wrapper = styled.header`
   justify-content: space-between;
   font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
   border-bottom: 1px solid lightgrey;
+  @media (max-width: 768px) {
+    padding-right: 0.2rem;
+  }
 `;
 
 const ButtonHome = styled.div`
@@ -164,7 +170,11 @@ const Button = styled.div`
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  z-index: 100
+  z-index: 100;
+  @media (max-width: 768px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const Menu = styled.div`
