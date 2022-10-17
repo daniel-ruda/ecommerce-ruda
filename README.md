@@ -11,14 +11,14 @@ All the products are obtained from a collection in Firebase.
 
 ## Live Demonstration
 
-Here are a gift showing the E-commerce website in use. Step by step to make an order:
-![Gift](/src/assets/screenshots/ecommerceRuda.gif)
+Here are a gif showing the E-commerce website in use. Step by step to make an order:
+![Gif](/src/assets/screenshots/ecommerceRuda.gif)
 
-Here are a gift showing the extras sections added to the E-commerce website such as Login and Order. Things yo can do:
+Here are a gif showing the extras sections added to the E-commerce website such as Login and Order. Things yo can do:
 * Make a user login to save the data to create an order
 * List orders saved in Firebase
 * Delete an order and update stock of each item belongs to the order deleted
-![Gift](/src/assets/screenshots/extras.gif)
+![Gif](/src/assets/screenshots/extras.gif)
 
 Here are screenshots that show the E-commerce website in use:
 
