@@ -20,7 +20,7 @@ Here are a gift showing the extras sections added to the E-commerce website such
 * Delete an order and update stock of each item belongs to the order deleted
 ![Gift](/src/assets/screenshots/extras.gif)
 
-Here are screenshots that show the E-commerce website in use
+Here are screenshots that show the E-commerce website in use:
 
 **Home Page**
 ![Home Page](/src/assets/screenshots/itemListContainer.jpg?raw=true "Optional Title")
