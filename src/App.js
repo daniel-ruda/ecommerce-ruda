@@ -5,6 +5,8 @@ import NavBar from "./components/modules/NavBar/NavBar";
 import { CartProvider } from "./context/CartProvider";
 import UserProvider from "./context/UserProvider";
 import AppRoute from "./Routing/AppRoute";
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <UserProvider>
           <BrowserRouter>
             <NavBar />
+            <ToastContainer />
             <AppRoute />
           </BrowserRouter>
         </UserProvider>

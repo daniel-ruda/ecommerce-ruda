@@ -180,6 +180,10 @@ export const OrderBuyer = styled.div`
   justify-content: center;
   align-items: center;
 
+  p {
+    margin: 3px;
+  }
+
   @media (max-width: 768px) {
     width: 90%;
     p {

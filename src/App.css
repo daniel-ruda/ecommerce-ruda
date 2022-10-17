@@ -14,7 +14,7 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (max-width: 768px) {
   .App-logo {
     height: 10vmin;
   }

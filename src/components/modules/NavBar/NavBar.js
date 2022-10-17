@@ -7,6 +7,7 @@ import CartContext from "../../../context/CartContext";
 import Modal from "../../shared/components/Modal/Modal";
 import CustomForm from "../../shared/components/Forms/CustomForm";
 import UserContext from "../../../context/UserContext";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const [modal, setModal] = useState(false);
@@ -39,7 +40,7 @@ const NavBar = () => {
     e.preventDefault();
 
     if (!user.email || !user.name || !user.phone) {
-      alert("Please complete the fields!");
+      toast.warning("Please complete all the fields!");
       return;
     }
 

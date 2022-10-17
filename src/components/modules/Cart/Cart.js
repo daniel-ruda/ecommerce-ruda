@@ -25,7 +25,7 @@ import Modal from "../../shared/components/Modal/Modal.js";
 import CustomForm from "../../shared/components/Forms/CustomForm.js";
 import UserContext from "./../../../context/UserContext";
 import Spinner from "../../shared/components/Spinner/Spinner.js";
-
+import { toast } from "react-toastify";
 const Cart = () => {
   const [modal, setModal] = useState(false);
   const [user, setUser] = useState({
@@ -34,7 +34,7 @@ const Cart = () => {
     phone: "",
   });
   const [orderNumber, setOrderNumber] = useState(0);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const { products, removeItem, totalPrice, clear } = useContext(CartContext);
   const { users } = useContext(UserContext);
   const db = getFirestore();
@@ -43,7 +43,7 @@ const Cart = () => {
   }, [users]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     const newOrder = {
       buyer: {
@@ -52,7 +52,7 @@ const Cart = () => {
         email: user.email,
       },
       items: products,
-      total: totalPrice(),
+      total: totalPrice().toFixed(2),
       date: new Date(),
     };
     const query = collection(db, "orders");
@@ -62,12 +62,11 @@ const Cart = () => {
       .then((response) => {
         updateStockItems();
         setOrderNumber(response.id);
-        setLoading(false)
+        setLoading(false);
         setModal(true);
-
         clear();
       })
-      .catch((error) => alert("Error generating order number"));
+      .catch((error) => toast.error("Error generating order number"));
   };
 
   const updateStockItems = () => {
@@ -77,10 +76,13 @@ const Cart = () => {
         .then(() => {
           console.log("updated item" + product.id);
         })
-        .catch(() => {
-          alert("Se produjo error al hacer update de los items");
-        });
+        .catch(() => toast.error("Error updating items"));
     });
+  };
+
+  const deleteProductFromCart = (id) => {
+    removeItem(id);
+    toast.success(`Deleted Item ${id} from cart.`, { theme: "colored" });
   };
 
   return (
@@ -128,7 +130,7 @@ const Cart = () => {
                       </div>
                     </ProductDescription>
                   </ProductDetail>
-                  <ProductDelete onClick={() => removeItem(item.id)}>
+                  <ProductDelete onClick={() => deleteProductFromCart(item.id)}>
                     <span>Delete</span>
                     <img src={TrashImage} alt={"Delete"} />
                   </ProductDelete>
@@ -141,7 +143,7 @@ const Cart = () => {
             <DetailPrices>
               <ItemPrice>
                 <div>Order SubTotal</div>
-                <div>${totalPrice()}</div>
+                <div>${totalPrice().toFixed(2)}</div>
               </ItemPrice>
 
               <ItemPrice>
@@ -150,7 +152,7 @@ const Cart = () => {
               </ItemPrice>
               <ItemPriceTotal>
                 <div>Estimated Order Total</div>
-                <div>${totalPrice()}</div>
+                <div>${totalPrice().toFixed(2)}</div>
               </ItemPriceTotal>
               <CustomForm
                 handleSubmit={handleSubmit}

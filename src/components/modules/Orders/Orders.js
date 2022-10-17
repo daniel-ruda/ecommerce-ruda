@@ -17,8 +17,9 @@ import CustomButton from "../../shared/components/Buttons/CustomButton.js";
 import ShoppingCart from "../../../assets/images/shoppingCart.svg";
 import { useState, useEffect } from "react";
 import TrashImage from "../../../assets/images/trashIcon.svg";
-import { getFirestore, getDocs, collection, updateDoc, doc, deleteDoc,  getDoc } from "firebase/firestore";
+import { getFirestore, getDocs, collection, updateDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
 import Spinner from "../../shared/components/Spinner/Spinner.js";
+import { toast } from "react-toastify";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -26,15 +27,12 @@ const Orders = () => {
   const [error, setError] = useState(false);
   const db = getFirestore();
 
-  // sacar products
-  
-
   useEffect(() => {
     const getOrders = () => {
       setLoading(true);
-  
+
       const queryCollection = collection(db, "orders");
-  
+
       getDocs(queryCollection)
         .then((response) => {
           const data = response.docs.map((order) => {
@@ -44,45 +42,36 @@ const Orders = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.log(error);
           setLoading(false);
           setError(true);
         });
-    }
+    };
     getOrders();
   }, [db]);
 
   const removeItem = (id) => {
-    setLoading(true)
+    setLoading(true);
     orders
       .find((order) => order.id === id)
       .items.forEach(async (item) => {
-
         const queryUpdate = doc(db, "items", item.id);
         const itemFromFB = await getDoc(queryUpdate);
         const itemDetail = itemFromFB.data();
 
         updateDoc(queryUpdate, { stock: itemDetail.stock + item.quantity })
           .then(() => {
-            console.log("agregado item" + item.id);
+            console.log("updated stock item" + item.id);
           })
-          .catch(() => {
-            alert("Se produjo error al hacer update de los items");
-          });
+          .catch(() => toast.error("Error updating items collection"));
       });
 
-        deleteDoc(doc(db, "orders", id))
+    deleteDoc(doc(db, "orders", id))
       .then(() => {
-        console.log("documento eliminado id: " + id);
-        //TODO agregar alert
-        setOrders(orders.filter(order => order.id !== id))
+        toast.success(`Order ${id} deleted successfully.`, { theme: "colored" });
+        setOrders(orders.filter((order) => order.id !== id));
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-        console.log("se porudjo error");
-      }); 
-      
+      .catch((error) => toast.error("Error deleting order", error));
   };
 
   return (
@@ -114,9 +103,22 @@ const Orders = () => {
                     <p>
                       ORDER ID: <strong>{order.id}</strong>
                     </p>
-                    <p>Buyer: {order.buyer.name}</p>
-                    <p>Total Products: {order.items.length}</p>
-                    <p>Total Price Order: ${order.total}</p>
+                    <p>
+                      {" "}
+                      <strong>Buyer: </strong>
+                      {order.buyer.name}
+                    </p>
+                    <p>
+                      <strong>Total Products: </strong>
+                      {order.items.length}
+                    </p>
+                    <p>
+                      <strong>Date: </strong>
+                      {order.date.toDate().toDateString()}
+                    </p>
+                    <p>
+                      <strong>Total Price Order:</strong> ${order.total}
+                    </p>
                   </OrderBuyer>
                   <ItemsDetailContainer>
                     {order.items.map((item) => (

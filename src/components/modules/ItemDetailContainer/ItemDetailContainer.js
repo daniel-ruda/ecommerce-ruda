@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Spinner from "../../shared/components/Spinner/Spinner";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState();
@@ -21,8 +22,8 @@ const ItemDetailContainer = () => {
           setProduct(data);
           setLoading(false);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          toast.error("Error getting detail of items");
           setLoading(false);
         });
     };
@@ -43,6 +44,5 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     padding: 1rem;
     margin-top: 4rem;
-    
   }
 `;
